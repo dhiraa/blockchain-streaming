@@ -22,7 +22,7 @@ to Streaming since there are some [limitations](https://spark.apache.org/docs/la
 **Replay Function**   
 Q) Is it possible to provide an API that has to use past data to get some insight on the streaming data?   
 A) Since we are using Kafka as our Message handling system, one possible solution given choice of tools and design, 
-we can use `offsets` property while loading the source and register it as a SQL table and do ad-hoc query over the REST API
+we can use `offsets` property while loading the source and register it as a SQL table and do ad-hoc query over the REST API   
     - https://stackoverflow.com/questions/46153105/how-to-get-kafka-offsets-for-structured-query-for-manual-and-reliable-offset-man   
     - https://blog.cloudera.com/blog/2017/06/offset-management-for-apache-kafka-with-apache-spark-streaming/
 
