@@ -19,7 +19,12 @@ import com.binance.websocket.data.Schema._
 import spray.json._
 import scala.util.parsing.json.JSONObject
 
+/**
+  * Modified version of
+  *   https://github.com/imranshaikmuma/Websocket-Akka-Kafka-Spark
+  */
 object BinanceProducer {
+
 
   def main(args: Array[String]): Unit = {
     implicit val system = ActorSystem()
@@ -51,6 +56,7 @@ object BinanceProducer {
         ),
         Source.maybe[Message])(Keep.right)
 
+    //TODO check how this can achieved in other ways
     val (xvgbtcResponse, xvgbtcpromise) =   Http().singleWebSocketRequest(
       WebSocketRequest("wss://stream.binance.com:9443/ws/xvgbtc@trade"),
       flow)
@@ -60,7 +66,7 @@ object BinanceProducer {
       flow)
 
 
-    val tradesResponse = List(xvgbtcResponse, btcusdtResponse)
+    val tradesResponse = List(xvgbtcResponse, btcusdtResponse) //Rude way for now!
 
     val connected = tradesResponse.map {
       response =>

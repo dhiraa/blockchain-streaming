@@ -1,14 +1,12 @@
 package com.binance.websocket.data
 
-import java.sql.Timestamp
 
-import scala.reflect.internal.util.Statistics.Quantity
 import spray.json._
 import DefaultJsonProtocol._
 import org.apache.spark.sql.types.LongType
-//import java.sql.Timestamp
+import java.sql.Timestamp
 
-import org.apache.spark.sql.types.{ArrayType, StringType, StructType, TimestampType} // if you don't supply your own Protocol (see below)
+import org.apache.spark.sql.types.{ArrayType, StringType, StructType, TimestampType}
 
 object Schema {
 
@@ -82,10 +80,10 @@ object Schema {
     |trade|1525022028846|XVGBTC |14773479|7.48E-6|567.0   |33747721|33747994|2018-04-29 22:43:48|true |true|
     |trade|1525022029055|XVGBTC |14773480|7.49E-6|970.0   |33747995|33747961|2018-04-29 22:43:49|false|true|
     +-----+-------------+-------+--------+-------+--------+--------+--------+-------------------+-----+----+
-
-
     **/
 
+
+  //Schema info to convert incoming Json stream into Spark Dataframes/Dataset
   val tradeStreamsSchema = new StructType()
     .add("e", StringType)
     .add("E", StringType)
@@ -99,6 +97,7 @@ object Schema {
     .add("m", StringType)
     .add("M", StringType)
 
+  //With option parsing the string data becomes little probalamatic! TODO
   //  case class TradeStreams(e: Option[String],
   //                          E: Option[Long],
   //                          s: Option[String],
@@ -126,8 +125,10 @@ object Schema {
 
   /**
     * A simple naive function to convert incoming Trade stream line inot Case class
-    * Most of the Json library for some reason failed to parse our line of interest
-    * @param line
+    * Most of the Json library for some reason failed to parse our line of interest.
+    *
+    * For some reasons all exisiting Scala Json parsers fail to parse our message. Strange!!!
+    * @param line incoming Json stream, one line at a time
     * @return
     */
   def parseTradeStreams(line: String):TradeStreams = {
@@ -156,7 +157,7 @@ object Schema {
       M = res.getOrElse("M", "0"))
   }
 
-  //TODO check why it failes to parse E, for which the value is Long not String
+  //TODO check why it fails to parse E, for which the value is Long not String
   object TradeStreamsProtocol extends DefaultJsonProtocol {
     implicit val tradeStreamsFormat = jsonFormat11(TradeStreams)
   }

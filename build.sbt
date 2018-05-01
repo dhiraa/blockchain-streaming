@@ -23,6 +23,8 @@ libraryDependencies ++= Seq(
   "org.twitter4j" %"twitter4j-stream" %"4.0.3",
   "com.typesafe.play" %% "play-json" % "2.4.6",
 
+  "org.rogach" %% "scallop" % "2.1.1",
+
   "org.scala-lang" % "scala-actors" % "2.11.7",
   "com.typesafe.akka" %% "akka-stream" % "2.4.2",
   "com.typesafe.akka" %% "akka-stream-kafka" % "0.19",
