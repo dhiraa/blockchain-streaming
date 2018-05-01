@@ -1,10 +1,10 @@
-name := "blockchain_streaming"
+name := "blockchain-streaming"
 
 version := "0.1"
 
 scalaVersion := "2.11.8"
 
-val sparkVersion = "2.2.1"
+val sparkVersion = "2.3.0"
 
 libraryDependencies ++= Seq(
 //  "org.slf4j" % "slf4j-api" % "1.7.5",
@@ -28,3 +28,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-stream-kafka" % "0.19",
   "com.softwaremill.reactivekafka" %% "reactive-kafka-core" % "0.10.0"
 ).map(_.exclude ("org.slf4j", "log4j-over-slf4j")) //http://www.slf4j.org/codes.html#log4jDelegationLoop
+
+//libraryDependencies += "com.typesafe.play" %% "play-json" % "2.6.7"
+//// https://mvnrepository.com/artifact/net.liftweb/lift-json
+//libraryDependencies += "net.liftweb" %% "lift-json" % "3.2.0"

@@ -1,4 +1,4 @@
-package com.nextgen.kafka
+package com.binance.kafka
 
 import akka.Done
 import akka.actor.ActorSystem
@@ -15,7 +15,7 @@ import kafka.producer.ReactiveKafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.StringSerializer
 
-import com.nextgen.websocket.data.Protocol._
+import com.binance.websocket.data.Schema._
 import spray.json._
 import scala.util.parsing.json.JSONObject
 
