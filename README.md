@@ -30,8 +30,8 @@ we can use `offsets` property while loading the source and register it as a SQL 
 - There are couple of ways this can be done.
 - By registering the incoming stream as a structured Dataframe/Table to Spark SQL engine, the registered table then can
 used to query any business logic over some existing Spark REST endpoint connectors
-- The other way would be  re-route the Spark Analytics results to Kafka topics and use Kafka REST APIs to subscribe and get to know
-the results
+- The other way would be  re-route the Spark Analytics results to Kafka topics and use Kafka REST APIs to subscribe and 
+get to know the results
 - References:
     - https://spoddutur.github.io/spark-notes/build-real-time-interations-with-spark.html
     - https://github.com/spoddutur/spark-as-service-using-embedded-server
@@ -39,6 +39,8 @@ the results
     - https://github.com/confluentinc/kafka-rest
 
 # How to run?
+
+Each of the following command needs to be executed on seprate terminal.
 
 ### Kafka
 
@@ -79,7 +81,8 @@ runMain com.binance.kafka.BinanceProducer
     - It listens for `XVGBTC` streams and `BTCUSDT` streams and calculates 
     `XVGUSBT` VWAP-Volume Weighted Average Price and Std. deviation of the same
     over given time period 
-- Check the outputs @ `/tmp/blockchain-streaming/binance/`
+- Results are written @ `/tmp/blockchain-streaming/binance/`
+- Statistics of the stream is printed as Stats("XVGUSDT", numEvents, vwap, mean, sum, std)
 
 ```
 cd /path/to/blockchain-streaming/
